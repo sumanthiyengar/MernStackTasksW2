@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <style>
+    .required {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <div align="center">
+  <form id="contactForm" onsubmit="return validateForm()">
+    <br>
+    <label for="name">     Name:</label>
+    <input type="text" id="name" name="name" required>
+    <span class="required" id="nameError">This field is required</span><br><br>
+
+    <label for="email">     Email:</label>
+    <input type="email" id="email" name="email" required>
+    <span class="required" id="emailError">This field is required</span><br><br>
+
+    <label for="website">Website:</label>
+    <input type="url" id="website" name="website"><br><br>
+
+    <label for="message">     Message:</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    <span class="required" id="messageError">This field is required</span><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</center>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      let isValid = true;
+
+      if (name === "") {
+        document.getElementById("nameError").style.display = "inline";
+        isValid = false;
+      } else {
+        document.getElementById("nameError").style.display = "none";
+      }
+
+      if (email === "") {
+        document.getElementById("emailError").style.display = "inline";
+        isValid = false;
+      } else {
+        document.getElementById("emailError").style.display = "none";
+      }
+
+      if (message === "") {
+        document.getElementById("messageError").style.display = "inline";
+        isValid = false;
+      } else {
+        document.getElementById("messageError").style.display = "none";
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>

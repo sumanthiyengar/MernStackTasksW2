@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date & Time</title>
+</head>
+<body>
+  <div align="center">
+    <button id="dateButton">Display Date</button>
+    <br>
+  </div>
+
+  <div align="center">
+    <p id="displayArea"></p>
+  </div>
+
+  <div align="center">
+    <button id="timeButton">Display Time</button>
+  </div>
+
+  <div align="center">
+    <p id="displayTimeArea"></p>
+  </div>
+
+  <script>
+    const dateButton = document.getElementById("dateButton");
+    const timeButton = document.getElementById("timeButton");
+    const displayArea = document.getElementById("displayArea");
+    const displayTimeArea = document.getElementById("displayTimeArea");
+
+    dateButton.addEventListener("click", displayDate);
+    timeButton.addEventListener("click", displayTime);
+
+    function formatMonthName(month) {
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return monthNames[month];
+    }
+
+    function formatDayName(day) {
+      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return dayNames[day];
+    }
+
+    function displayDate() {
+      const currentDate = new Date();
+      const day = currentDate.getDate();
+      const month = formatMonthName(currentDate.getMonth());
+      const year = currentDate.getFullYear();
+      displayArea.textContent = `${day} ${month} ${year}`;
+    }
+
+    function displayTime() {
+      const currentDate = new Date();
+      const dayName = formatDayName(currentDate.getDay());
+      const monthName = formatMonthName(currentDate.getMonth());
+      const day = currentDate.getDate();
+      const year = currentDate.getFullYear();
+      const time = currentDate.toLocaleTimeString();
+      const gmtOffset = currentDate.getTimezoneOffset() / -60; // Convert offset to positive value
+      displayTimeArea.textContent = ` ${dayName} ${monthName} ${day} ${year} ${time} GMT${gmtOffset >= 0 ? '+' : '-'}${Math.abs(gmtOffset)}`;
+    }
+  </script>
+</body>
+</html>
